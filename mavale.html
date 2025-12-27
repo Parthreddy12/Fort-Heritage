@@ -37,7 +37,7 @@
     <body>
         <div class="mavale-container">
 
-            <div class="scroll-box ">
+            <div class="scroll-box " id="scrollBox">
 
 
                 <div class="box" onclick="handleClick(this, 'tanaji')">
@@ -67,6 +67,7 @@
             </div>
             <div id="infoBox" class="info-box slide-up">
                 <p id="infoText"></p>
+                <div class="fade"></div>
             </div>
         </div>
     </body>
@@ -129,6 +130,38 @@
                              "त्यांनी मराठा साम्राज्यातील सुरक्षा आणि प्रतिष्ठा मजबूत केली.";
     }
 }
+// JavaScript to handle scroll and highlight active box
+document.addEventListener("DOMContentLoaded", () => {
+  const scrollBox = document.getElementById("scrollBox");
+
+  function updateActiveBox() {
+    const boxes = scrollBox.querySelectorAll(".box");
+    const scrollBoxRect = scrollBox.getBoundingClientRect();
+    const centerY = scrollBoxRect.top + scrollBoxRect.height / 2;
+
+    let closestBox = null;
+    let closestDistance = Infinity;
+
+    boxes.forEach(box => {
+      const boxRect = box.getBoundingClientRect();
+      const boxCenter = boxRect.top + boxRect.height / 2;
+      const distance = Math.abs(centerY - boxCenter);
+
+      if (distance < closestDistance) {
+        closestDistance = distance;
+        closestBox = box;
+      }
+    });
+
+    boxes.forEach(box => box.classList.remove("active"));
+    if (closestBox) closestBox.classList.add("active");
+  }
+
+  scrollBox.addEventListener("scroll", updateActiveBox);
+
+
+  updateActiveBox();
+});
 
 </script>
 
