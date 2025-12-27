@@ -38,7 +38,7 @@ nav {
     width: max-content;
     cursor: pointer;
 }
-.a:hover {
+.a:active {
     color: rgb(255, 0, 0);
     text-shadow: 2px 2px 20px rgb(255, 0, 0);
     font-size: 20.5px;
